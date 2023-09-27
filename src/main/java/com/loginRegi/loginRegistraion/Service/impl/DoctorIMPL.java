@@ -45,10 +45,13 @@ public class DoctorIMPL implements DoctorService {
     @Override
     public LoginMessage logInDoctor(DoctorDto doctorDto) {
         String msg = "";
-        Doctor doctor1 = doctorRepository.findByEmail(doctorDto.getEmail());
+        Optional<Doctor> doctor1 = doctorRepository.findByEmail(doctorDto.getEmail());
         if (doctor1 != null) {
             String password = doctorDto.getPassword();
-            String encodedPassword = doctor1.getPassword();
+//            String encodedPassword;
+//            encodedPassword = doctor1.getPassword();
+            Doctor doctor = doctor1.get();
+            String encodedPassword = doctor.getPassword();
             //Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
             Boolean isPwdRight = password.equals(encodedPassword);
             if (isPwdRight) {
@@ -66,6 +69,10 @@ public class DoctorIMPL implements DoctorService {
         }
 
         //return new LoginMessage("Email not exits", false);
+    }
+
+    public Optional<Doctor> findByMail(String email) {
+        return doctorRepository.findByEmail(email);
     }
 
 }
