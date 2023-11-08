@@ -22,6 +22,12 @@ public class Doctor {
     private String research_journal;
     private String citations;
     private String contact;
+
+    @Column(unique = true)
     private String email;
     private String password;
+
+//    @Lob
+//    @Column(name = "image", columnDefinition = "BLOB")
+//    private byte[] image;
 }

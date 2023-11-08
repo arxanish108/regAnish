@@ -1,5 +1,6 @@
 package com.loginRegi.loginRegistraion.DoctorController;
 
+import com.loginRegi.loginRegistraion.Dto.LogInDto;
 import com.loginRegi.loginRegistraion.Model.Doctor;
 import com.loginRegi.loginRegistraion.Service.DoctorService;
 import com.loginRegi.loginRegistraion.Dto.DoctorDto;
@@ -17,18 +18,16 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
     @PostMapping("/save")
-    @CrossOrigin(origins = "http://localhost:63342")
-    public String saveEmployee(@RequestBody DoctorDto doctorDto)
-    {
+    //@CrossOrigin(origins = "http://localhost:63342")
+    public String saveEmployee(@RequestBody DoctorDto doctorDto) {
         System.out.print("hello");
         String id = doctorService.addDoctor(doctorDto);
         return id;
     }
 
-
     @PostMapping("/logIn")
-    public ResponseEntity<?> logInDoctor(@RequestBody DoctorDto doctorDto){
-        LoginMessage message = doctorService.logInDoctor(doctorDto);
+    public ResponseEntity<?> logInDoctor(@RequestBody LogInDto logInDto){
+        LoginMessage message = doctorService.logInDoctor(logInDto);
         return ResponseEntity.ok(message);
     }
 
@@ -43,6 +42,8 @@ public class DoctorController {
         }
 
     }
+
+
 
 
 

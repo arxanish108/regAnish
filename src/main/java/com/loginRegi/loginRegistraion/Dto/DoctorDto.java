@@ -19,10 +19,10 @@ public class DoctorDto {
     private String specialization;
     private String degree;
     private int experience;
-
     private String research_journal;
     private String citations;
     private String contact;
     private String email;
     private String password;
+   /// private byte[] image;
 }
